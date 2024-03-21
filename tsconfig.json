@@ -1,20 +1,82 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "module": "ESNext",
+        "target": "esnext",
+        "useDefineForClassFields": true,
+        "module": "esnext",
         "moduleResolution": "bundler",
-        "jsx": "preserve",
-        "strict": true,
         "isolatedModules": true,
-        "target": "ESNext",
+        "strict": true,
+        "jsx": "preserve",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
+        "sourceMap": true,
+        "resolveJsonModule": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "noEmit": true,
-        "skipLibCheck": true,
         "paths": {
-            "@/*": ["./resources/js/*"],
-            "ziggy-js": ["./vendor/tightenco/ziggy"]
-        }
+            "@/*": [
+                "./resources/js/*"
+            ],
+            "@themeConfig": [
+                "./themeConfig.ts"
+            ],
+            "@layouts/*": [
+                "./resources/js/@layouts/*"
+            ],
+            "@layouts": [
+                "./resources/js/@layouts"
+            ],
+            "@core/*": [
+                "./resources/js/@core/*"
+            ],
+            "@core": [
+                "./resources/js/@core"
+            ],
+            "@images/*": [
+                "./resources/js/assets/images/*"
+            ],
+            "@styles/*": [
+                "./resources/js/assets/styles/*"
+            ],
+            "@validators": [
+                "./resources/js/@core/utils/validators"
+            ],
+            "@api-utils/*": [
+                "./resources/js/plugins/fake-api/utils/*"
+            ],
+            "ziggy-js": [
+                "./vendor/tightenco/ziggy"
+            ]
+        },
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "skipLibCheck": true,
+        "types": [
+            "vite/client",
+            "vite-plugin-vue-layouts/client"
+        ]
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.d.ts", "resources/js/**/*.vue"]
+    "include": [
+        "./typed-router.d.ts",
+        "./vite.config.*",
+        "./env.d.ts",
+        "./shims.d.ts",
+        "./resources/js/**/*.ts",
+        "./resources/js/**/*.d.ts",
+        "./resources/js/**/*",
+        "./resources/js/**/*.vue",
+        "./themeConfig.ts",
+        "./auto-imports.d.ts",
+        "./components.d.ts"
+    ],
+    "exclude": [
+        "./dist",
+        "./node_modules"
+    ]
 }

@@ -1,92 +1,138 @@
 <script setup lang="ts">
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3'
+import { useGenerateImageVariant } from '@core/composable/useGenerateImageVariant'
+import authV2LoginIllustrationBorderedDark from '@images/pages/auth-v2-login-illustration-bordered-dark.png'
+import authV2LoginIllustrationBorderedLight from '@images/pages/auth-v2-login-illustration-bordered-light.png'
+import authV2LoginIllustrationDark from '@images/pages/auth-v2-login-illustration-dark.png'
+import authV2LoginIllustrationLight from '@images/pages/auth-v2-login-illustration-light.png'
+import authV2MaskDark from '@images/pages/misc-mask-dark.png'
+import authV2MaskLight from '@images/pages/misc-mask-light.png'
+import { VNodeRenderer } from '@layouts/components/VNodeRenderer'
+import { themeConfig } from '@themeConfig'
+import Blank from '@/layouts/BlankLayout.vue'
 
-defineProps<{
-    canResetPassword?: boolean;
-    status?: string;
-}>();
+definePage({
+  meta: {
+    layout: 'blank',
+  },
+})
 
 const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
+  username: '',
+  password: '',
+})
 
 const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => {
-            form.reset('password');
-        },
-    });
-};
+  form.post(route('login'))
+}
+
+const isPasswordVisible = ref(false)
+
+const authThemeImg = useGenerateImageVariant(
+  authV2LoginIllustrationLight,
+  authV2LoginIllustrationDark,
+  authV2LoginIllustrationBorderedLight,
+  authV2LoginIllustrationBorderedDark,
+  true)
+
+const authThemeMask = useGenerateImageVariant(authV2MaskLight, authV2MaskDark)
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
+  <Head :title="$t('titles.login')" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+  <Blank>
+    <VRow
+      no-gutters
+      class="auth-wrapper bg-surface"
+    >
+      <VCol
+        md="8"
+        class="d-none d-md-flex"
+      >
+        <div class="position-relative bg-background rounded-lg w-100 ma-8 me-0">
+          <div class="d-flex align-center justify-center w-100 h-100">
+            <VImg
+              max-width="505"
+              :src="authThemeImg"
+              class="auth-illustration mt-16 mb-2"
+            />
+          </div>
+
+          <VImg
+            class="auth-footer-mask"
+            :src="authThemeMask"
+          />
         </div>
+      </VCol>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
+      <VCol
+        cols="12"
+        md="4"
+        class="auth-card-v2 d-flex align-center justify-center"
+      >
+        <VCard
+          flat
+          :max-width="500"
+          class="mt-12 mt-sm-0 pa-4"
+        >
+          <VCardText>
+            <VNodeRenderer
+              :nodes="themeConfig.app.logo"
+              class="mb-6"
+            />
+            <h4 class="text-h4 mb-1">
+              Welcome to <span class="text-capitalize">{{ themeConfig.app.title }}</span>! 👋🏻
+            </h4>
+            <p class="mb-0">
+              Please sign-in to your account and start the adventure
+            </p>
+          </VCardText>
+          <VCardText>
+            <VForm @submit.prevent="submit">
+              <VRow>
+                <!-- username -->
+                <VCol cols="12">
+                  <AppTextField
+                    v-model="form.username"
                     autofocus
-                    autocomplete="username"
-                />
+                    label="Kullanıcı Adı"
+                    placeholder="kullanıcı"
+                    type="text"
+                    :error-messages="form.errors.username"
+                  />
+                </VCol>
 
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
+                <!-- password -->
+                <VCol cols="12">
+                  <AppTextField
                     v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
+                    label="Şifre"
+                    placeholder="············"
+                    :error-messages="form.errors.password"
+                    :type="isPasswordVisible ? 'text' : 'password'"
+                    :append-inner-icon="isPasswordVisible ? 'tabler-eye-off' : 'tabler-eye'"
+                    @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                  />
 
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+                  <div class="mt-4">
+                    <VBtn
+                      block
+                      type="submit"
+                    >
+                      Giriş Yap
+                    </VBtn>
+                  </div>
+                </VCol>
+              </VRow>
+            </VForm>
+          </VCardText>
+        </VCard>
+      </VCol>
+    </VRow>
+  </Blank>
 </template>
+
+<style lang="scss">
+@use "@core/scss/template/pages/page-auth";
+</style>

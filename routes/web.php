@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +14,32 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect()->route('login');
 });
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', [\App\Http\Controllers\App\DashboardController::class, 'index'])->name('app.dashboard.index');
+
+    Route::get('/workspaces', [\App\Http\Controllers\App\WorkspaceController::class, 'index'])->name('app.workspace.list');
+    Route::get('/workspace/create', [\App\Http\Controllers\App\WorkspaceController::class, 'create'])->name('app.workspace.create');
+    Route::post('/workspace/store', [\App\Http\Controllers\App\WorkspaceController::class, 'store'])->name('app.workspace.store');
+    Route::get('/workspace/edit/{workspace}', [\App\Http\Controllers\App\WorkspaceController::class, 'edit'])->name('app.workspace.edit');
+    Route::post('/workspace/update/{workspace}', [\App\Http\Controllers\App\WorkspaceController::class, 'update'])->name('app.workspace.update');
+    Route::post('/workspace/destroy/{workspace}', [\App\Http\Controllers\App\WorkspaceController::class, 'destroy'])->name('app.workspace.destroy');
+
+    Route::get('/templates', [\App\Http\Controllers\App\TemplateController::class, 'index'])->name('app.template.list');
+    Route::get('/template/create', [\App\Http\Controllers\App\TemplateController::class, 'create'])->name('app.template.create');
+    Route::post('/template/store', [\App\Http\Controllers\App\TemplateController::class, 'store'])->name('app.template.store');
+    Route::get('/template/show/{template}', [\App\Http\Controllers\App\TemplateController::class, 'show'])->name('app.template.show');
+    Route::get('/template/edit/{template}', [\App\Http\Controllers\App\TemplateController::class, 'edit'])->name('app.template.edit');
+    Route::post('/template/update/{template}', [\App\Http\Controllers\App\TemplateController::class, 'update'])->name('app.template.update');
+    Route::post('/template/destroy/{template}', [\App\Http\Controllers\App\TemplateController::class, 'destroy'])->name('app.template.destroy');
+
+    Route::get('/group/{group}/patients/edit', [\App\Http\Controllers\App\GroupPatientController::class, 'edit'])->name('app.group.patients.edit');
+    Route::post('/group/{group}/patients/update', [\App\Http\Controllers\App\GroupPatientController::class, 'update'])->name('app.group.patients.update');
+
+    Route::get('/group/{group}/surveys/edit', [\App\Http\Controllers\App\GroupSurveyController::class, 'edit'])->name('app.group.surveys.edit');
+    Route::post('/group/{group}/surveys/update', [\App\Http\Controllers\App\GroupSurveyController::class, 'update'])->name('app.group.surveys.update');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
