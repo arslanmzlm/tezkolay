@@ -3,7 +3,7 @@ import { toast } from '@/Helpers/Toast'
 import { MAX_IMAGE_SIZE } from '@core/config'
 import { getI18n } from '@/plugins/i18n'
 
-const { t } = getI18n()
+const { t } = getI18n().global
 
 export type FileResult = ArrayBuffer | string | null
 

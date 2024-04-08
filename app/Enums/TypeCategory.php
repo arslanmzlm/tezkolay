@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum TypeCategory: string
 {
-    case INPUT = "input";
-    case OUTPUT = "output";
+    case Input = "input";
+    case Output = "output";
 }

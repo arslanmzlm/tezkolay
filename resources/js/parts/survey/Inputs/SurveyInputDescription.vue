@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type Question from '@/Models/Question'
 
-const props = defineProps<{
-  question: Question
-}>()
+const question = defineModel<Question>({ required: true })
 
-const position = props.question.getOption('image_position', 'top')
+const position = question.value.getOption('image_position', 'top')
 </script>
 
 <template>
@@ -32,6 +30,10 @@ const position = props.question.getOption('image_position', 'top')
 </template>
 
 <style lang="scss">
+.description-body > *:last-child {
+  margin-bottom: 0;
+}
+
 .description-image img {
   max-width: 100%;
 }

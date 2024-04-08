@@ -5,6 +5,7 @@ import BaseLayout from '@/layouts/BaseLayout.vue'
 import Template from '@/Models/Template'
 import Type from '@/Models/Type'
 import TemplateForm from '@/parts/template/TemplateForm.vue'
+import Breadcrumb from '@/parts/app/Breadcrumb.vue'
 
 const props = defineProps<{
   types: Array<object>
@@ -31,6 +32,8 @@ function submit() {
   <Head :title="$t('models.template.edit')" />
 
   <BaseLayout>
+    <Breadcrumb :title="$t('models.template.edit')" />
+
     <TemplateForm
       key="templateFormEdit"
       v-model="template"

@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Enums\TypeComponent;
 use App\Models\Question;
-use App\Models\QuestionType;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -21,7 +20,7 @@ class QuestionRepository
     {
         $data = $data === null ? self::getDataFromRequest() : $data;
 
-        if (self::validateQuestionData($data)) {
+        if (self::validateData($data)) {
             return null;
         }
 
@@ -42,7 +41,7 @@ class QuestionRepository
     {
         $data = $data === null ? self::getDataFromRequest() : $data;
 
-        if (self::validateQuestionData($data)) {
+        if (self::validateData($data)) {
             return null;
         }
 
@@ -96,7 +95,9 @@ class QuestionRepository
         $surveys->sortBy('order', SORT_NUMERIC);
 
         foreach ($surveys as $item) {
-            if (in_array($item['component'], TypeComponent::hasRelation())) {
+            $component = TypeComponent::from($item['component']);
+
+            if (in_array($component, TypeComponent::hasRelation())) {
                 if (!empty($item['related_order']) && empty($item['related_to'])) {
                     $item['related_to'] = $related[$item['related_order']]->id;
                 }
@@ -112,7 +113,7 @@ class QuestionRepository
                 $question = self::store($item);
             }
 
-            if (in_array($item['component'], TypeComponent::hasRelation()) && empty($item['related_order']) && empty($item['related_to'])) {
+            if (in_array($component, TypeComponent::hasRelation()) && empty($item['related_order']) && empty($item['related_to'])) {
                 $related[$item['order']] = $question;
             }
         }
@@ -124,17 +125,17 @@ class QuestionRepository
      * @param array $data
      * @return bool
      */
-    private static function validateQuestionData(array $data): bool
+    private static function validateData(array $data): bool
     {
         if (
-            $data['component'] === TypeComponent::IMAGE
+            $data['component'] === TypeComponent::Image
             && (!isset($data['id']) && (!isset($data['value']) || !($data['value'] instanceof UploadedFile)))
         ) {
             return true;
         }
 
         if (
-            $data['component'] === TypeComponent::DESCRIPTION
+            $data['component'] === TypeComponent::Description
             && !isset($data['value'])
         ) {
             return true;

@@ -5,6 +5,7 @@ import Workspace from '@/Models/Workspace'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import WorkspaceForm from '@/parts/app/forms/WorkspaceForm.vue'
 import WorkspaceCard from '@/parts/app/items/WorkspaceCard.vue'
+import Breadcrumb from '@/parts/app/Breadcrumb.vue'
 
 const workspace = reactive(new Workspace())
 const form = useForm<Workspace>(workspace)
@@ -20,6 +21,8 @@ function store() {
   <Head :title="$t('models.workspace.add')" />
 
   <BaseLayout>
+    <Breadcrumb :title="$t('models.workspace.add')" />
+
     <VRow>
       <VCol
         cols="12"

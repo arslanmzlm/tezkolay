@@ -23,7 +23,7 @@ return new class extends Migration {
                 ->cascadeOnUpdate();
             $table->string('name', 1023);
             $table->string('state')
-                ->default(\App\Enums\SurveyState::CREATED)
+                ->default(\App\Enums\SurveyState::Created)
                 ->index();
             $table->date('survey_at');
             $table->timestamp('initialized_at')

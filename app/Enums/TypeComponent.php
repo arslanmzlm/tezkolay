@@ -6,54 +6,61 @@ enum TypeComponent: string
 {
     use GetEnumsTrait;
 
-    const TEXT = "Text";
-    const NUMBER = "Number";
-    const RADIO_GROUP = "RadioGroup";
-    const CHECKBOX_GROUP = "CheckboxGroup";
-    const DATE = "Date";
-    const MULTIPLE_RADIO_GROUP = "MultipleRadioGroup";
-    const RANGE = "Range";
+    case Text = "Text";
+    case Number = "Number";
+    case RadioGroup = "RadioGroup";
+    case CheckboxGroup = "CheckboxGroup";
+    case Date = "Date";
+    case MultipleRadioGroup = "MultipleRadioGroup";
+    case Range = "Range";
 
-    const DESCRIPTION = "Description";
-    const IMAGE = "Image";
-    const LIST = "List";
+    case Description = "Description";
+    case Image = "Image";
+    case List = "List";
 
     public static function inputs(): array
     {
         return [
-            self::TEXT,
-            self::NUMBER,
-            self::RADIO_GROUP,
-            self::CHECKBOX_GROUP,
-            self::DATE,
-            self::MULTIPLE_RADIO_GROUP,
-            self::RANGE,
+            self::Text,
+            self::Number,
+            self::RadioGroup,
+            self::CheckboxGroup,
+            self::Date,
+            self::MultipleRadioGroup,
+            self::Range,
         ];
     }
 
     public static function outputs(): array
     {
         return [
-            self::DESCRIPTION,
-            self::IMAGE,
-            self::LIST,
+            self::Description,
+            self::Image,
+            self::List,
         ];
     }
 
     public static function hasValues(): array
     {
         return [
-            self::RADIO_GROUP,
-            self::CHECKBOX_GROUP,
-            self::MULTIPLE_RADIO_GROUP,
-            self::LIST,
+            self::RadioGroup,
+            self::CheckboxGroup,
+            self::MultipleRadioGroup,
+            self::List,
         ];
     }
 
     public static function hasRelation(): array
     {
         return [
-            self::MULTIPLE_RADIO_GROUP,
+            self::MultipleRadioGroup,
+        ];
+    }
+
+    public static function hasMultipleAnswer(): array
+    {
+        return [
+            self::CheckboxGroup,
         ];
     }
 }

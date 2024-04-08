@@ -21,13 +21,13 @@ class Type extends Model {
       this.category = data.category ?? null
       this.label = data.label ?? null
       this.description = data.description ?? null
-      this.required = data.required ?? null
-      this.order = data.order ?? null
+      this.required = Boolean(data.required ?? false)
+      this.order = typeof data.order !== "undefined" ? Number.parseInt(data.order) : null
       this.value = data.value ?? null
       this.values = data.values ?? null
       this.options = data.options ?? null
-      this.user_id = data.user_id ?? null
-      this.main_type_id = data.main_type_id ?? null
+      this.user_id = data.user_id ? Number.parseInt(data.user_id) : null
+      this.main_type_id = typeof data.main_type_id !== "undefined" ? Number.parseInt(data.main_type_id) : null
     }
   }
 }

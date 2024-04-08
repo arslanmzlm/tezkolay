@@ -39,7 +39,7 @@ class WorkspaceController extends Controller
 
             $toast = trans('messages.success');
         } catch (\Error|\Exception $exception) {
-            $toast = ['type' => 'error', trans('messages.error')];
+            $toast = ['type' => 'error', 'message' => trans('messages.error')];
         }
 
         return to_route('app.workspace.list')->with('toast', $toast);
@@ -73,7 +73,7 @@ class WorkspaceController extends Controller
 
             $toast = trans('messages.success');
         } catch (\Error|\Exception $exception) {
-            $toast = ['type' => 'error', trans('messages.error')];
+            $toast = ['type' => 'error', 'message' => trans('messages.error')];
         }
 
         return to_route('app.workspace.list')->with('toast', $toast);
@@ -89,7 +89,7 @@ class WorkspaceController extends Controller
 
             $toast = trans('messages.success');
         } catch (\Error|\Exception $exception) {
-            $toast = ['type' => 'error', trans('messages.error')];
+            $toast = ['type' => 'error', 'message' => trans('messages.error')];
         }
 
         return Inertia::location(to_route('app.workspace.list')->with('toast', $toast));

@@ -6,8 +6,8 @@ enum SurveyState: string
 {
     use GetEnumsTrait;
 
-    case CREATED = 'created';
-    case INITIALIZED = 'initialized';
-    case SENT = 'sent';
-    case COMPLETED = 'completed';
+    case Created = 'created';
+    case Initialized = 'initialized';
+    case Sent = 'sent';
+    case Completed = 'completed';
 }

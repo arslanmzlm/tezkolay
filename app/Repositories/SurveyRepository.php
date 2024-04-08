@@ -13,7 +13,7 @@ class SurveyRepository
 
         $survey = new Survey();
         $survey->group_id = $data['group_id'];
-        $survey->state = SurveyState::CREATED;
+        $survey->state = SurveyState::Created;
 
         return self::assignAttributes($survey, $data);
     }
@@ -57,7 +57,7 @@ class SurveyRepository
     private static function assignAttributes(Survey $survey, array $data): ?Survey
     {
         $survey->name = !empty($data['name']) ? $data['name'] : null;
-        if ($survey->state === SurveyState::CREATED) {
+        if ($survey->state === SurveyState::Created) {
             $survey->template_id = $data['template_id'];
             $survey->survey_at = $data['survey_at'];
         }
@@ -72,7 +72,7 @@ class SurveyRepository
      */
     public static function init(Survey $survey): ?Survey
     {
-        if (!$survey->questions()->exists() && $survey->state !== SurveyState::INITIALIZED) {
+        if ($survey->isCanInitialize()) {
             $related_id = null;
             foreach ($survey->template->questions as $question) {
                 $newQuestion = $question->replicate();
@@ -92,7 +92,7 @@ class SurveyRepository
                 }
             }
 
-            $survey->state = SurveyState::INITIALIZED;
+            $survey->state = SurveyState::Initialized;
             $survey->save();
 
             return $survey->fresh();

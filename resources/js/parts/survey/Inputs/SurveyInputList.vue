@@ -3,11 +3,9 @@ import { computed, ref } from 'vue'
 import type Question from '@/Models/Question'
 import { LIST_ORDERED_STYLES, LIST_STYLE } from '@core/enums'
 
-const props = defineProps<{
-  question: Question
-}>()
+const question = defineModel<Question>({ required: true })
 
-const listStyle = ref(props.question.getOption('list_style', LIST_STYLE.DISC))
+const listStyle = ref(question.value.getOption('list_style', LIST_STYLE.DISC))
 
 const listTag = computed<string>(() => {
   return LIST_ORDERED_STYLES.includes(listStyle.value) ? 'ol' : 'ul'

@@ -10,7 +10,7 @@ class Patient extends Model {
     super(data)
 
     if (data !== null) {
-      this.group_id = data.group_id ?? null
+      this.group_id = data.group_id ? Number.parseInt(data.group_id) : null
       this.name = data.name ?? null
       this.phone = data.phone ?? null
       this.contact_phone = data.contact_phone ?? null

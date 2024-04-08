@@ -3,9 +3,7 @@ import { inject } from 'vue'
 import type Template from '@/Models/Template'
 import type Question from '@/Models/Question'
 
-defineProps<{
-  question: Question
-}>()
+const question = defineModel<Question>({ required: true })
 
 const template = inject<Template>('template')
 </script>
@@ -18,7 +16,10 @@ const template = inject<Template>('template')
     {{ question.getOption("title") }}
   </div>
 
-  <table v-if="template" class="w-100">
+  <table
+    v-if="template"
+    class="w-100"
+  >
     <thead>
       <tr>
         <td />
@@ -34,11 +35,16 @@ const template = inject<Template>('template')
 
     <tbody>
       <tr
-        v-for="(quest, index) in template.questions.getRelated(question)"
+        v-for="(quest, index) in template.questions.getRelates(question)"
         :key="quest.order ?? index"
       >
         <td class="py-2">
           {{ `${$t("labels.survey_question_order", { order: quest.question_order })} ${quest.label}` }}
+          <span
+            v-if="quest.required"
+            class="text-error"
+            :title="$t('labels.required_attribute')"
+          >*</span>
         </td>
         <td
           v-for="(value, valueIndex) in quest.values"

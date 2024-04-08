@@ -63,3 +63,10 @@ export const LIST_UNORDERED_STYLES: string[] = [
   LIST_STYLE.DISCLOSURE_CLOSED,
   LIST_STYLE.DISCLOSURE_OPEN,
 ]
+
+export enum SURVEY_STATE {
+  CREATED = 'created',
+  INITIALIZED = 'initialized',
+  SENT = 'sent',
+  COMPLETED = 'completed',
+}

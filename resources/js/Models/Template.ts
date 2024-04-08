@@ -15,7 +15,7 @@ class Template extends Model {
       this.name = data.name ?? null
       this.description = data.description ?? null
       this.created_by = data.created_by ?? null
-      this.is_private = Boolean(data.is_private) ?? null
+      this.is_private = Boolean(data.is_private ?? false)
 
       if (data.questions && data.questions.length) {
         this.questions.addFromFetch(data.questions)

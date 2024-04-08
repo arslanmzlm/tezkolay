@@ -19,10 +19,10 @@ class Group extends Model {
     if (data !== null) {
       this.name = data.name ?? null
       this.size = data.size ?? null
-      this.user_id = data.user_id ?? null
+      this.user_id = data.user_id ? Number.parseInt(data.user_id) : null
       this.workspace_name = data.workspace_name ?? null
-      this.patients_count = data.patients_count ?? 0
-      this.surveys_count = data.surveys_count ?? 0
+      this.patients_count = data.patients_count ? Number.parseInt(data.patients_count) : 0
+      this.surveys_count = data.surveys_count ? Number.parseInt(data.surveys_count) : 0
 
       if (data.patients && data.patients.length) {
         data.patients.forEach((item: Record<string, any>) => {
@@ -80,19 +80,24 @@ class Group extends Model {
   }
 
   fillPatients(): void {
-    if (this.patients.length < <number> this.size) {
-      const missing: number = <number> this.size - this.patients.length
+    if (this.patients && this.size) {
+      const length: number = this.patients.length
+      const size: number = <number> this.size
 
-      const newPatients: Patient[] = Array.from({ length: missing })
-        .fill(null)
-        .map(() => new Patient())
+      if (length < size) {
+        const missing: number = size - length
 
-      this.patients = concat(this.patients, newPatients)
-    }
-    else if (this.patients.length > <number> this.size) {
-      const missing: number = <number> this.size - this.patients.length
+        const newPatients: Patient[] = Array.from({ length: missing })
+          .fill(null)
+          .map(() => new Patient())
 
-      this.patients.splice(missing)
+        this.patients = concat(this.patients, newPatients)
+      }
+      else if (length > size) {
+        const missing: number = size - length
+
+        this.patients.splice(missing)
+      }
     }
   }
 

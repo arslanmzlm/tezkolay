@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import type Question from '@/Models/Question'
 
-defineProps<{
-  question: Question
-}>()
-
-const val = ref()
+const question = defineModel<Question>({ required: true })
 </script>
 
 <template>
-  <VRadioGroup v-model="val">
+  <VRadioGroup v-model="question.value">
     <VRadio
       v-for="(value, index) in question.values"
       :key="index"

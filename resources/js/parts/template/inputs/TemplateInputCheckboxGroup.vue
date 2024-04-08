@@ -14,6 +14,7 @@ const question = defineModel<Question>({ required: true })
   <Draggable
     v-if="question.values"
     :list="question.values"
+    item-key="index"
     handle=".handle"
     ghost-class="ghost"
     :animation="200"

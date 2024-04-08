@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/vue3'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import Workspace from '@/Models/Workspace'
 import WorkspaceItem from '@/parts/app/items/WorkspaceItem.vue'
+import Breadcrumb from '@/parts/app/Breadcrumb.vue'
 
 const props = defineProps<{
   workspaces: Array<object>
@@ -17,27 +18,13 @@ const workspaces = props.workspaces.map(item => {
   <Head :title="$t('titles.workspaces')" />
 
   <BaseLayout>
+    <Breadcrumb :title="$t('titles.workspaces')">
+      <VBtn :href="route('app.workspace.create')">
+        {{ $t("models.workspace.add") }}
+      </VBtn>
+    </Breadcrumb>
+
     <VRow>
-      <VCol
-        cols="12"
-        lg="6"
-      >
-        <h1 class="text-h1">
-          {{ $t("titles.workspaces") }}
-        </h1>
-      </VCol>
-
-      <VCol
-        cols="12"
-        lg="6"
-        align-self="center"
-        class="text-end"
-      >
-        <VBtn :href="route('app.workspace.create')">
-          {{ $t("models.workspace.add") }}
-        </VBtn>
-      </VCol>
-
       <VCol cols="12">
         <VRow
           v-if="workspaces.length"

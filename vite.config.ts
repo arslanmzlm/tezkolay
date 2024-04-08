@@ -71,13 +71,13 @@ export default defineConfig({
     }),
 
     // Docs: https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n#intlifyunplugin-vue-i18n
-    // VueI18nPlugin({
-    //   runtimeOnly: true,
-    //   compositionOnly: true,
-    //   include: [
-    //     fileURLToPath(new URL('./src/plugins/i18n/locales/**', import.meta.url)),
-    //   ],
-    // }),
+    VueI18nPlugin({
+      runtimeOnly: false,
+      compositionOnly: true,
+      include: [
+        fileURLToPath(new URL('./src/plugins/i18n/locales/**', import.meta.url)),
+      ],
+    }),
   ],
   define: { 'process.env': {} },
   resolve: {

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\TypeCategory;
+use App\Enums\TypeComponent;
 use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
@@ -22,5 +24,7 @@ class Type extends Model
         'required' => 'boolean',
         'values' => 'array',
         'options' => 'array',
+        'component' => TypeComponent::class,
+        'category' => TypeCategory::class,
     ];
 }

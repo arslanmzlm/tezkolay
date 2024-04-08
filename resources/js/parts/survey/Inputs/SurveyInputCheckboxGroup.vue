@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type Question from '@/Models/Question'
 
-defineProps<{
-  question: Question
-}>()
-
-const val = ref()
+const question = defineModel<Question>({ required: true })
+if (!question.value.value)
+  question.value.value = []
 </script>
 
 <template>
@@ -14,7 +12,7 @@ const val = ref()
     :key="index"
   >
     <VCheckbox
-      v-model="val"
+      v-model="question.value"
       :value="index"
       :label="value.label"
     />

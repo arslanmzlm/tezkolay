@@ -5,10 +5,11 @@ import {inject} from "vue";
 import Template from "@/Models/Template";
 
 const props = defineProps<{
-  question: Question,
   template?: Template
   variant?: NonNullable<"flat" | "text" | "elevated" | "tonal" | "outlined" | "plain">
 }>()
+
+const question = defineModel<Question>({ required: true })
 
 let template = inject<Template | false>("template", false)
 
@@ -55,11 +56,12 @@ export default {
            })
          }}</span>
       {{ question.label }}
+      <span v-if="question.required" class="text-error" :title="$t('labels.required_attribute')">*</span>
     </VCardTitle>
     <VCardText>
       <component
         :is="`SurveyInput${question.component}`"
-        :question="question"
+        v-model="question"
       />
 
       <div

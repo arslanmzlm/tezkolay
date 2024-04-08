@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type Question from '@/Models/Question'
 
-defineProps<{
-  question: Question
-}>()
+const question = defineModel<Question>({ required: true })
 </script>
 
 <template>
-  <VTextField type="date" />
+  <VTextField
+    v-model="question.value"
+    type="date"
+  />
 </template>

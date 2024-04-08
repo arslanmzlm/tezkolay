@@ -19,10 +19,9 @@ class Workspace extends Model {
     super(data)
 
     if (data !== null) {
-      this.user_id = data.user_id ?? null
+      this.user_id = typeof data.user_id !== "undefined" ? Number.parseInt(data.user_id) : null
       this.name = data.name ?? null
       this.logo = data.logo ?? null
-      this.groups = []
 
       if (data.groups && data.groups.length) {
         data.groups.forEach((item: Record<string, any>) => {

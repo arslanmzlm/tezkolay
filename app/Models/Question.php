@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\TypeCategory;
+use App\Enums\TypeComponent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -52,18 +54,28 @@ class Question extends Model
         return $this->belongsTo(Template::class);
     }
 
-    /**
-     * Get component for question.
-     *
-     * @return string
-     */
-    public function getComponentAttribute(): string
+    public function getComponentAttribute(): TypeComponent
     {
         return $this->type->component;
     }
 
-    public function getCategoryAttribute(): string
+    public function getCategoryAttribute(): TypeCategory
     {
         return $this->type->category;
+    }
+
+    public function hasRelation(): bool
+    {
+        return in_array($this->component, TypeComponent::hasRelation());
+    }
+
+    public function hasMultipleAnswer(): bool
+    {
+        return in_array($this->component, TypeComponent::hasMultipleAnswer());
+    }
+
+    public function isInput(): bool
+    {
+        return $this->category === TypeCategory::Input;
     }
 }

@@ -5,6 +5,7 @@ import Workspace from '@/Models/Workspace'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import WorkspaceForm from '@/parts/app/forms/WorkspaceForm.vue'
 import WorkspaceCard from '@/parts/app/items/WorkspaceCard.vue'
+import Breadcrumb from '@/parts/app/Breadcrumb.vue'
 
 const props = defineProps<{
   workspace: Workspace
@@ -24,6 +25,8 @@ function update() {
   <Head :title="$t('models.workspace.edit')" />
 
   <BaseLayout>
+    <Breadcrumb :title="$t('models.workspace.edit')" />
+
     <VRow>
       <VCol
         cols="12"

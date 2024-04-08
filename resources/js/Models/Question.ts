@@ -1,4 +1,5 @@
 import { cloneDeep, isArray } from 'lodash'
+import { isNumericString } from '@sindresorhus/is'
 import Model from '@/Models/Model'
 import type Type from '@/Models/Type'
 import { APP_URL } from '@core/config'
@@ -25,22 +26,35 @@ class Question extends Model {
     super(data)
 
     if (data !== null) {
-      this.template_id = data.template_id ?? null
-      this.survey_id = data.survey_id ?? null
-      this.type_id = data.type_id ?? null
+      this.template_id = data.template_id ? Number.parseInt(data.template_id) : null
+      this.survey_id = data.survey_id ? Number.parseInt(data.survey_id) : null
+      this.type_id = typeof data.type_id !== "undefined" ? Number.parseInt(data.type_id) : null
       this.category = data.category ?? null
       this.component = data.component ?? null
       this.label = data.label ?? null
       this.description = data.description ?? null
-      this.required = data.required ?? null
+      this.required = Boolean(data.required ?? false)
       this.order = data.order ?? null
       this.question_order = data.question_order ?? null
-      this.related_to = data.related_to ?? null
-      this.related_order = data.related_order ?? null
-      this.value = data.value ?? null
-      this.score = data.score ?? null
+      this.related_to = data.related_to ? Number.parseInt(data.related_to) : null
+      this.related_order = typeof data.related_order !== "undefined" ? Number.parseInt(data.related_order) : null
+      this.score = typeof data.score !== "undefined" ? Number.parseFloat(data.score) : null
       this.values = data.values ?? null
       this.options = data.options ?? null
+
+      if (data.value) {
+        if (Array.isArray(data.value)) {
+          this.value = data.value.map(val => {
+            return isNumericString(val) ? Number.parseInt(val) : val
+          })
+        }
+        else if (isNumericString(data.value)) {
+          this.value = Number.parseInt(data.value)
+        }
+        else {
+          this.value = data.value
+        }
+      }
     }
   }
 
@@ -87,8 +101,8 @@ class Question extends Model {
   get isRelated(): boolean {
     return (
       this.component === 'MultipleRadioGroup'
-            && this.related_order === null
-            && this.related_to === null
+      && this.related_order === null
+      && this.related_to === null
     )
   }
 
@@ -121,7 +135,7 @@ class Question extends Model {
       this.values = []
 
     score
-            = typeof score === 'string' || typeof score === 'number'
+      = typeof score === 'string' || typeof score === 'number'
         ? typeof score === 'string'
           ? Number.parseFloat(score)
           : score
@@ -194,7 +208,7 @@ class Question extends Model {
   get isRenderAble(): boolean {
     return !(
       this.component === 'MultipleRadioGroup'
-            && (this.related_to !== null || this.related_order !== null)
+      && (this.related_to !== null || this.related_order !== null)
     )
   }
 }

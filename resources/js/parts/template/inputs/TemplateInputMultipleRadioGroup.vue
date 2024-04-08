@@ -90,6 +90,7 @@ if (question.value.options === null)
         <Draggable
           v-if="question.values"
           :list="question.values"
+          item-key="index"
           class="grow space-y-4"
           handle=".handle"
           ghost-class="ghost"

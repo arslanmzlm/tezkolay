@@ -14,14 +14,15 @@ const props = defineProps<Props>()
   >
     <VIcon icon="tabler-dots-vertical" />
 
-    <VMenu
-      v-if="props.menuList"
-      activator="parent"
-    >
+    <VMenu activator="parent">
       <VList
+        v-if="props.menuList"
         :items="props.menuList"
         :item-props="props.itemProps"
       />
+      <VList v-else>
+        <slot />
+      </VList>
     </VMenu>
   </IconBtn>
 </template>

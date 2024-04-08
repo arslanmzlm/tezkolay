@@ -40,6 +40,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/group/{group}/surveys/edit', [\App\Http\Controllers\App\GroupSurveyController::class, 'edit'])->name('app.group.surveys.edit');
     Route::post('/group/{group}/surveys/update', [\App\Http\Controllers\App\GroupSurveyController::class, 'update'])->name('app.group.surveys.update');
+
+    Route::get('/surveys', [\App\Http\Controllers\App\SurveyController::class, 'index'])->name('app.survey.list');
+    Route::post('/survey/initialize/{survey}', [\App\Http\Controllers\App\SurveyController::class, 'initialize'])->name('app.survey.initialize');
+
+    Route::get('/survey-item/{survey}/{patient}', [\App\Http\Controllers\App\SurveyItemController::class, 'show'])->name('app.survey.item.show');
+    Route::post('/survey-item/update/{surveyItem}', [\App\Http\Controllers\App\SurveyItemController::class, 'update'])->name('app.survey.item.update');
 });
 
 require __DIR__ . '/auth.php';

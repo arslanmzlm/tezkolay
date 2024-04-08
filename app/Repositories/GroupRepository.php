@@ -50,7 +50,7 @@ class GroupRepository
     private static function assignAttributes(Group $group, array $data): Group
     {
         $group->name = $data['name'] ?? $group->name;
-        $group->size = intval($data['size']);
+        $group->size = intval($data['size'] ?? $group->size);
         self::storeLogo($group, $data);
 
         $group->save();
@@ -112,5 +112,14 @@ class GroupRepository
             $ids = $surveys->whereNotNull('id')->pluck('id');
             $group->surveys()->whereNotIn('id', $ids)->delete();
         }
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection<int, Group>|Group[]
+     */
+    public static function getForUser(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Group::whereRelation('workspace', 'user_id', auth()->user()->id)
+            ->get();
     }
 }

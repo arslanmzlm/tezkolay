@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/vue3'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import Template from '@/Models/Template'
 import SurveyInput from '@/parts/survey/SurveyInput.vue'
+import Breadcrumb from '@/parts/app/Breadcrumb.vue'
 
 const props = defineProps<{
   templates: Array<object>
@@ -17,27 +18,13 @@ const templates = props.templates.map(item => {
   <Head :title="$t('titles.templates')" />
 
   <BaseLayout>
+    <Breadcrumb :title="$t('titles.templates')">
+      <VBtn :href="route('app.template.create')">
+        {{ $t("models.template.add") }}
+      </VBtn>
+    </Breadcrumb>
+
     <VRow>
-      <VCol
-        cols="12"
-        lg="6"
-      >
-        <h1 class="text-h1">
-          {{ $t("titles.templates") }}
-        </h1>
-      </VCol>
-
-      <VCol
-        cols="12"
-        lg="6"
-        align-self="center"
-        class="text-end"
-      >
-        <VBtn :href="route('app.template.create')">
-          {{ $t("models.template.add") }}
-        </VBtn>
-      </VCol>
-
       <VCol cols="12">
         <VRow
           v-if="templates.length"
@@ -59,8 +46,8 @@ const templates = props.templates.map(item => {
                     cols="12"
                   >
                     <SurveyInput
+                      v-model="template.questions.items[questionIndex]"
                       :template
-                      :question
                       variant="outlined"
                     />
                   </VCol>

@@ -126,14 +126,16 @@ class QuestionHelper {
         question.order = order
         order++
       }
+    })
 
+    this.items = orderBy(this.items, 'order')
+
+    this.items.forEach((question: Question): void => {
       if (question.category === 'input') {
         question.question_order = questionOrder
         questionOrder++
       }
     })
-
-    this.items = orderBy(this.items, 'order')
   }
 
   removedType(typeId: number, mainTypeId: number) {
