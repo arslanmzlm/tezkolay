@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use App\Models\Group;
+use App\Models\Patient;
 use App\Models\Survey;
 use App\Repositories\GroupRepository;
 use App\Repositories\SurveyRepository;
@@ -26,6 +27,25 @@ class SurveyController extends Controller
 
         return Inertia::render('App/Survey/List', [
             'groups' => $groups,
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Survey $survey)
+    {
+        $patients = $survey->group
+            ->patients()
+            ->paginate(request()->query('per_page', 10))
+            ->through(function (Patient $patient) use ($survey) {
+                $patient['survey_item'] = $survey->items->where('patient_id', $patient->id)->first();
+                return $patient;
+            });
+
+        return Inertia::render('App/Survey/Show', [
+            'survey' => $survey,
+            'patients' => $patients
         ]);
     }
 

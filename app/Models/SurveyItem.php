@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SurveyItemState;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +17,7 @@ class SurveyItem extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'state' => SurveyItemState::class,
         'sent_at' => 'timestamp',
         'completed_at' => 'timestamp',
         'filled_by_user' => 'bool'

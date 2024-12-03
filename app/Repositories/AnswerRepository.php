@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\SurveyItemState;
 use App\Models\Answer;
 use App\Models\SurveyItem;
 
@@ -89,6 +90,7 @@ class AnswerRepository
         }
 
         if (!$error) {
+            $surveyItem->state = SurveyItemState::Completed;
             $surveyItem->completed_at = now();
             $surveyItem->save();
         }

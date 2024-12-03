@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useTheme } from 'vuetify'
-import { reactive } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import {useTheme} from 'vuetify'
+import {reactive} from 'vue'
+import {Link} from '@inertiajs/vue3'
 import type Group from '@/Models/Group'
 import type Survey from '@/Models/Survey'
-import { hexToRgb } from '@layouts/utils'
-import { getI18n } from '@/plugins/i18n'
+import {hexToRgb} from '@layouts/utils'
+import {getI18n} from '@/plugins/i18n'
 
 const componentProps = defineProps<{
   group: Group
@@ -14,7 +14,7 @@ const componentProps = defineProps<{
 
 const vuetifyTheme = useTheme()
 
-const { t } = getI18n().global
+const {t} = getI18n().global
 
 const patientId = ref<number | null>(null)
 const popoverStates = reactive<Record<number, boolean>>({})
@@ -130,6 +130,10 @@ const chartOptions = computed(() => {
           </VTooltip>
         </VAlert>
 
+        <Link :href="route('app.survey.show', {survey})">
+          <VIcon icon="tabler-dots-vertical"/>
+        </Link>
+
         <MoreBtn>
           <VMenu
             v-if="survey.id"
@@ -236,7 +240,7 @@ const chartOptions = computed(() => {
                   color="primary"
                   variant="tonal"
                 >
-                  <VIcon icon="tabler-users-group" />
+                  <VIcon icon="tabler-users-group"/>
                 </VAvatar>
               </template>
             </VListItem>
@@ -255,7 +259,7 @@ const chartOptions = computed(() => {
                   color="info"
                   variant="tonal"
                 >
-                  <VIcon icon="tabler-users" />
+                  <VIcon icon="tabler-users"/>
                 </VAvatar>
               </template>
             </VListItem>
@@ -274,7 +278,7 @@ const chartOptions = computed(() => {
                   color="success"
                   variant="tonal"
                 >
-                  <VIcon icon="tabler-clipboard-check" />
+                  <VIcon icon="tabler-clipboard-check"/>
                 </VAvatar>
               </template>
             </VListItem>

@@ -70,3 +70,9 @@ export enum SURVEY_STATE {
   SENT = 'sent',
   COMPLETED = 'completed',
 }
+
+export enum SURVEY_ITEM_STATE {
+  CREATED = 'created',
+  SENT = 'sent',
+  COMPLETED = 'completed',
+}

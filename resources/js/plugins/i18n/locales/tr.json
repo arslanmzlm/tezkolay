@@ -1,188 +1,196 @@
 {
-    "alts": {
-        "workspace_logo": "Çalışma alanı logosu"
+  "alts": {
+    "workspace_logo": "Çalışma alanı logosu"
+  },
+  "attributes": {
+    "answer": "Cevap",
+    "contact_phone": "İletişim Numarası",
+    "created_at": "Oluşturulma tarihi",
+    "date": "Tarih",
+    "description": "Açıklama",
+    "group_name": "Grup ismi",
+    "group_size": "Grup boyutu",
+    "image": "Görsel",
+    "image_position": "Görsel Konumu",
+    "is_private": "Kullanıcıya Özel",
+    "item": "Öğe",
+    "list_style": "Liste Stili",
+    "logo": "Logo",
+    "max": "Maksimum",
+    "min": "Minimum",
+    "name": "İsim",
+    "option": "Seçenek",
+    "order": "Sıra",
+    "password": "Şifre",
+    "patient": "Hasta",
+    "phone": "Telefon",
+    "question": "Soru",
+    "question_count": "Soru Sayısı",
+    "required": "Zorunlu",
+    "score": "Skor",
+    "size": "Boyut",
+    "state": "Durum",
+    "survey": "Anket",
+    "survey_at": "Anket tarihi",
+    "template": "Şablon",
+    "template_description": "Şablon Açıklaması",
+    "template_name": "Şablon Adı",
+    "username": "Kullanıcı adı"
+  },
+  "auth": {
+    "logout": "Çıkış Yap"
+  },
+  "descriptions": {
+    "changing_group_size": "Grup boyutu değiştirildiğinde grubun dışında kalan hastaların verisi silinecektir.",
+    "question_description": "Soru hakkında veya nasıl cevaplanacağı ile alakalı bilgilendirme yapmak için açıklama alanını kullanabilirsiniz.",
+    "start_survey": "Anketleri manuel doldurabilmek için erkenden başlatmanız gerekmektedir. Anketi erken başlatmak hastalara mesaj göndermiyecektir. Başlatılan anketin şablonu üzerinde yapılan düzenlemer ankete yansımayacaktır.",
+    "template_is_private": "Oluşturulan şablonlar tüm kullanıcılar tarafından kullanılabilir veya değiştirilebilir. Eğer şablonun size özel olmasını istiyorsanız üstteki seçeneği işaretleyiniz."
+  },
+  "errors": {
+    "template": {
+      "multiple_count_invalid": "Çoklu soru eklemek için 1 ve 50 arasında bir değer giriniz."
     },
-    "attributes": {
-        "answer": "Cevap",
-        "contact_phone": "İletişim Numarası",
-        "created_at": "Oluşturulma tarihi",
-        "date": "Tarih",
-        "description": "Açıklama",
-        "group_name": "Grup ismi",
-        "group_size": "Grup boyutu",
-        "image": "Görsel",
-        "image_position": "Görsel Konumu",
-        "is_private": "Kullanıcıya Özel",
-        "item": "Öğe",
-        "list_style": "Liste Stili",
-        "logo": "Logo",
-        "max": "Maksimum",
-        "min": "Minimum",
-        "name": "İsim",
-        "option": "Seçenek",
-        "order": "Sıra",
-        "password": "Şifre",
-        "patient": "Hasta",
-        "phone": "Telefon",
-        "question": "Soru",
-        "question_count": "Soru Sayısı",
-        "required": "Zorunlu",
-        "score": "Skor",
-        "size": "Boyut",
-        "survey": "Anket",
-        "survey_at": "Anket tarihi",
-        "template": "Şablon",
-        "template_description": "Şablon Açıklaması",
-        "template_name": "Şablon Adı",
-        "username": "Kullanıcı adı"
-    },
-    "auth": {
-        "logout": "Çıkış Yap"
-    },
-    "descriptions": {
-        "changing_group_size": "Grup boyutu değiştirildiğinde grubun dışında kalan hastaların verisi silinecektir.",
-        "question_description": "Soru hakkında veya nasıl cevaplanacağı ile alakalı bilgilendirme yapmak için açıklama alanını kullanabilirsiniz.",
-        "start_survey": "Anketleri manuel doldurabilmek için erkenden başlatmanız gerekmektedir. Anketi erken başlatmak hastalara mesaj göndermiyecektir. Başlatılan anketin şablonu üzerinde yapılan düzenlemer ankete yansımayacaktır.",
-        "template_is_private": "Oluşturulan şablonlar tüm kullanıcılar tarafından kullanılabilir veya değiştirilebilir. Eğer şablonun size özel olmasını istiyorsanız üstteki seçeneği işaretleyiniz."
-    },
-    "errors": {
-        "template": {
-            "multiple_count_invalid": "Çoklu soru eklemek için 1 ve 50 arasında bir değer giriniz."
-        },
-        "upload": {
-            "file_must_be_image": "Yüklenen dosya görsel olmalıdır.",
-            "file_size_too_big": "Dosya boyutu çok büyük. Lütfen en fazla 1MB boyutunda dosya yükleyiniz."
-        }
-    },
-    "labels": {
-        "add": "Ekle",
-        "add_answer": "Cevap Ekle",
-        "add_item": "Öğe Ekle",
-        "add_multiple_questions": "Çoklu soru ekleme",
-        "add_option": "Seçenek Ekle",
-        "add_patient": "Hasta Ekle",
-        "add_question": "Soru Ekle",
-        "add_survey": "Anket Ekle",
-        "close": "Kapat",
-        "completion_rate": "Tamamlanma Oranı",
-        "delete": "Sil",
-        "description_image": "Açıklama Görseli",
-        "edit": "Düzenle",
-        "fill": "Doldur",
-        "group_patients_title": "{workspace} - {group} Grubu @:titles.patients",
-        "group_size": "Grup Boyutu",
-        "group_surveys_title": "{workspace} - {group} Grubu @:titles.surveys",
-        "item": "Öğe",
-        "login": "Giriş yap",
-        "manuel_fill_survey": "Manuel Anket Doldur",
-        "option": "Seçenek",
-        "patient_count": "Hasta Sayısı",
-        "preview": "Önizle",
-        "question_order": "{order}. Soru",
-        "remove_image": "Görseli Kaldır",
-        "remove_logo": "Logoyu kaldır",
-        "required_attribute": "Zorunlu alan",
-        "saved_patient_count": "Kayıtlı Hasta Sayısı",
-        "start": "Başlat",
-        "submit": "Gönder",
-        "survey_count": "Anket Sayısı",
-        "survey_item_completed": "Tamamlanmış Anket",
-        "survey_item_pending": "Bekleyen Anket",
-        "survey_question_order": "{order}.",
-        "survey_state": "Anket durumu",
-        "uploaded_image": "Yüklenen görsel",
-        "warning": "Dikkat"
-    },
-    "modals": {
-        "delete": {
-            "message": "Silinecek veriler geri alınamaz ve bağlantılı olduğu verileride etkiler. Bu işleme devam etmek istediğinizden emin misiniz?",
-            "title": "Veri Silme"
-        }
-    },
-    "models": {
-        "group": {
-            "add": "@:titles.group @:labels.add",
-            "delete": "@:titles.group @:labels.delete",
-            "edit": "@:titles.group @:labels.edit",
-            "title": "@:titles.group | @:titles.groups"
-        },
-        "patient": {
-            "add": "@:titles.patient @:labels.add",
-            "delete": "@:titles.patient @:labels.delete",
-            "edit": "@:titles.patient @:labels.edit",
-            "title": "@:titles.patient | @:titles.patients"
-        },
-        "survey": {
-            "add": "@:titles.survey @:labels.add",
-            "delete": "@:titles.survey @:labels.delete",
-            "edit": "@:titles.survey @:labels.edit",
-            "states": {
-                "completed": "Tamamlandı",
-                "created": "Oluşturuldu",
-                "initialized": "Başlatıldı",
-                "sent": "Gönderildi"
-            },
-            "title": "@:titles.survey | @:titles.surveys"
-        },
-        "template": {
-            "add": "@:titles.template @:labels.add",
-            "delete": "@:titles.template @:labels.delete",
-            "edit": "@:titles.template @:labels.edit",
-            "preview": "@:titles.template @:labels.preview",
-            "title": "@:titles.template | @:titles.templates"
-        },
-        "workspace": {
-            "add": "@:titles.workspace @:labels.add",
-            "delete": "@:titles.workspace @:labels.delete",
-            "edit": "@:titles.workspace @:labels.edit",
-            "title": "@:titles.workspace | @:titles.workspaces"
-        }
-    },
-    "options": {
-        "image_positions": {
-            "bottom": "Alt",
-            "left": "Sol",
-            "right": "Sağ",
-            "top": "Üst"
-        },
-        "list_styles": {
-            "circle": "Daire",
-            "decimal": "Sayı",
-            "decimal-leading-zero": "Sıfırla Başlayan Sayı",
-            "disc": "Disk",
-            "disclosure-closed": "Üçgen Sağa",
-            "disclosure-open": "Üçgen Aşağı",
-            "lower-latin": "Küçük Harf",
-            "lower-roman": "Küçük Roma Rakamları",
-            "none": "Stilsiz",
-            "square": "Kare",
-            "upper-latin": "Büyük Harf",
-            "upper-roman": "Büyük Roma Rakamları"
-        }
-    },
-    "placeholders": {
-        "output_description": "Bu alanı yönergeleri belirtmek veya anketi detaylandırmak için kullanabilirsiniz.",
-        "password": "Şifrenizi giriniz",
-        "type_multiple_question_title": "Genel başlığı girin",
-        "type_question_label_or_title": "Soruyu veya başlığı girin",
-        "username": "Kullanıcı adınızı giriniz",
-        "workspace_name": "Çalışma Alanı Adı"
-    },
-    "select": {
-        "patient": "Hasta seçin"
-    },
-    "titles": {
-        "group": "Grup",
-        "groups": "Gruplar",
-        "homepage": "Anasayfa",
-        "login": "Giriş Yap",
-        "patient": "Hasta",
-        "patients": "Hastalar",
-        "survey": "Anket",
-        "surveys": "Anketler",
-        "template": "Şablon",
-        "templates": "Şablonlar",
-        "workspace": "Çalışma Alanı",
-        "workspaces": "Çalışma Alanları"
+    "upload": {
+      "file_must_be_image": "Yüklenen dosya görsel olmalıdır.",
+      "file_size_too_big": "Dosya boyutu çok büyük. Lütfen en fazla 1MB boyutunda dosya yükleyiniz."
     }
+  },
+  "labels": {
+    "add": "Ekle",
+    "add_answer": "Cevap Ekle",
+    "add_item": "Öğe Ekle",
+    "add_multiple_questions": "Çoklu soru ekleme",
+    "add_option": "Seçenek Ekle",
+    "add_patient": "Hasta Ekle",
+    "add_question": "Soru Ekle",
+    "add_survey": "Anket Ekle",
+    "close": "Kapat",
+    "completion_rate": "Tamamlanma Oranı",
+    "delete": "Sil",
+    "description_image": "Açıklama Görseli",
+    "edit": "Düzenle",
+    "fill": "Doldur",
+    "group_patients_title": "{workspace} - {group} Grubu @:titles.patients",
+    "group_size": "Grup Boyutu",
+    "group_surveys_title": "{workspace} - {group} Grubu @:titles.surveys",
+    "item": "Öğe",
+    "login": "Giriş yap",
+    "manuel_fill_survey": "Manuel Anket Doldur",
+    "option": "Seçenek",
+    "patient_count": "Hasta Sayısı",
+    "preview": "Önizle",
+    "question_order": "{order}. Soru",
+    "remove_image": "Görseli Kaldır",
+    "remove_logo": "Logoyu kaldır",
+    "required_attribute": "Zorunlu alan",
+    "saved_patient_count": "Kayıtlı Hasta Sayısı",
+    "start": "Başlat",
+    "submit": "Gönder",
+    "survey_count": "Anket Sayısı",
+    "survey_item_completed": "Tamamlanmış Anket",
+    "survey_item_pending": "Bekleyen Anket",
+    "survey_question_order": "{order}.",
+    "survey_state": "Anket durumu",
+    "uploaded_image": "Yüklenen görsel",
+    "warning": "Dikkat"
+  },
+  "modals": {
+    "delete": {
+      "message": "Silinecek veriler geri alınamaz ve bağlantılı olduğu verileride etkiler. Bu işleme devam etmek istediğinizden emin misiniz?",
+      "title": "Veri Silme"
+    }
+  },
+  "models": {
+    "group": {
+      "add": "@:titles.group @:labels.add",
+      "delete": "@:titles.group @:labels.delete",
+      "edit": "@:titles.group @:labels.edit",
+      "title": "@:titles.group | @:titles.groups"
+    },
+    "patient": {
+      "add": "@:titles.patient @:labels.add",
+      "delete": "@:titles.patient @:labels.delete",
+      "edit": "@:titles.patient @:labels.edit",
+      "title": "@:titles.patient | @:titles.patients"
+    },
+    "survey": {
+      "add": "@:titles.survey @:labels.add",
+      "delete": "@:titles.survey @:labels.delete",
+      "edit": "@:titles.survey @:labels.edit",
+      "states": {
+        "completed": "Tamamlandı",
+        "created": "Oluşturuldu",
+        "initialized": "Başlatıldı",
+        "sent": "Gönderildi"
+      },
+      "title": "@:titles.survey | @:titles.surveys"
+    },
+    "survey_item": {
+      "states": {
+        "completed": "Tamamlandı",
+        "created": "Oluşturuldu",
+        "sent": "Gönderildi"
+      }
+    },
+    "template": {
+      "add": "@:titles.template @:labels.add",
+      "delete": "@:titles.template @:labels.delete",
+      "edit": "@:titles.template @:labels.edit",
+      "preview": "@:titles.template @:labels.preview",
+      "title": "@:titles.template | @:titles.templates"
+    },
+    "workspace": {
+      "add": "@:titles.workspace @:labels.add",
+      "delete": "@:titles.workspace @:labels.delete",
+      "edit": "@:titles.workspace @:labels.edit",
+      "title": "@:titles.workspace | @:titles.workspaces"
+    }
+  },
+  "options": {
+    "image_positions": {
+      "bottom": "Alt",
+      "left": "Sol",
+      "right": "Sağ",
+      "top": "Üst"
+    },
+    "list_styles": {
+      "circle": "Daire",
+      "decimal": "Sayı",
+      "decimal-leading-zero": "Sıfırla Başlayan Sayı",
+      "disc": "Disk",
+      "disclosure-closed": "Üçgen Sağa",
+      "disclosure-open": "Üçgen Aşağı",
+      "lower-latin": "Küçük Harf",
+      "lower-roman": "Küçük Roma Rakamları",
+      "none": "Stilsiz",
+      "square": "Kare",
+      "upper-latin": "Büyük Harf",
+      "upper-roman": "Büyük Roma Rakamları"
+    }
+  },
+  "placeholders": {
+    "output_description": "Bu alanı yönergeleri belirtmek veya anketi detaylandırmak için kullanabilirsiniz.",
+    "password": "Şifrenizi giriniz",
+    "type_multiple_question_title": "Genel başlığı girin",
+    "type_question_label_or_title": "Soruyu veya başlığı girin",
+    "username": "Kullanıcı adınızı giriniz",
+    "workspace_name": "Çalışma Alanı Adı"
+  },
+  "select": {
+    "patient": "Hasta seçin"
+  },
+  "titles": {
+    "group": "Grup",
+    "groups": "Gruplar",
+    "homepage": "Anasayfa",
+    "login": "Giriş Yap",
+    "patient": "Hasta",
+    "patients": "Hastalar",
+    "survey": "Anket",
+    "surveys": "Anketler",
+    "template": "Şablon",
+    "templates": "Şablonlar",
+    "workspace": "Çalışma Alanı",
+    "workspaces": "Çalışma Alanları"
+  }
 }

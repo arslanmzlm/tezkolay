@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/group/{group}/surveys/update', [\App\Http\Controllers\App\GroupSurveyController::class, 'update'])->name('app.group.surveys.update');
 
     Route::get('/surveys', [\App\Http\Controllers\App\SurveyController::class, 'index'])->name('app.survey.list');
+    Route::get('/survey/show/{survey}', [\App\Http\Controllers\App\SurveyController::class, 'show'])->name('app.survey.show');
     Route::post('/survey/initialize/{survey}', [\App\Http\Controllers\App\SurveyController::class, 'initialize'])->name('app.survey.initialize');
 
     Route::get('/survey-item/{survey}/{patient}', [\App\Http\Controllers\App\SurveyItemController::class, 'show'])->name('app.survey.item.show');
